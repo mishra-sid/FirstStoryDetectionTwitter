@@ -1,10 +1,3 @@
-
-
-
-
-## tdidf
-
-
 import math
 import pandas as pd
 import numpy as np
@@ -73,7 +66,6 @@ class TFIDF(object):
 
     def _get_important_radicals(self, text):
         blob = tb(text)
-#         print blob
         scores = {radical: self._tfidf(radical, blob, self.columns_radicals)
                   for radical in blob.words}
         median_score = np.median(list(scores.values()))
@@ -83,7 +75,6 @@ class TFIDF(object):
         return important_radicals
 
     def _extract_tokens(self):
-        
 #         print type(self._df)
         # lower case the text
         self._df['TEXT'] = self._df.apply(
