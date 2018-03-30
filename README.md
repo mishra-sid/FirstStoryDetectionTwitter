@@ -17,3 +17,13 @@
    iii) Confirm it with cosine similarity for candidate pairs O(Summation(Candidate pairsC2))
    iv) Key : PARAM_number_bands_matched, PARAM_threshold_cosine_similarity : Remove the false positives.
    v) Pick the ones with the least time stamp -> First story & family detected.
+   
+LSH split :
+Ankit : False positive removal , candidate pair checking and final decision 
+Raaghav : Dynamic bucketing using (Method - ii) 
+Siddhartha : Static bucketing + False postitive removal using similarity score in all pairs per bucket.
+
+#Extension:
+1. Extend dynamic method without ML
+Abhinav:
+1. Extend dynamic method using ML ( Transfer Learning) 
