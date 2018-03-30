@@ -1,11 +1,14 @@
 import os, re
 
-class StoryGenerator(Object):
-    def yieldStory(sourcePath):#Returns an iterator of stories 
-        for root, _, files in os.walk(sourcePath):
+class StoryGenerator:
+    def __init__(self, sourcePath):
+        self.sourcePath = sourcePath
+        
+    def yieldStory(self):#Returns an iterator of stories 
+        for root, _, files in os.walk(self.sourcePath):
             for file in files:
                 if (file.endswith(".sgm")):
-                    with open(os.path.join(root, file), 'r') as data:
+                    with open(os.path.join(root, file), encoding="utf8", errors='ignore') as data:
                         inBody = False
                         curStory = ""
                         for line in data:
@@ -22,8 +25,13 @@ class StoryGenerator(Object):
                                     curStory += line[pos+6:]
                                     inBody = True
 
+    def getAllStories(self):
+        stories = []
+        for story in self.yieldStory():
+            stories.append(story)
+        return stories
 
-#Usecasee
+#Usecase
 '''
 for i, story in enumerate(yeildStory("./Dataset")):
 	print("-"*20, "Story", i,"-"*20)

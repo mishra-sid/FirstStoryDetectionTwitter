@@ -9,7 +9,7 @@ from time import time
 from textblob import TextBlob as tb
 
 
-class TFIDF(object):
+class TFIDF:
 
     def __init__(self, texts, langue):
 
