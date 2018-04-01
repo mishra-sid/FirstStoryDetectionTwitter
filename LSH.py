@@ -48,11 +48,10 @@ class LSH:
 					count_of_pairs[(key1,key2)] += 1
 				else :
 					count_of_pairs[(key1,key2)] = 1
-		for pair in count_pairs.keys():
+		for pair in count_of_pairs.keys():
 			print (pair)
-			if count_pairs[pair] >= THRESHOLD_NUM_BUCKETS_PAIR_PRESENT:
+			if count_of_pairs[pair] >= THRESHOLD_NUM_BUCKETS_PAIR_PRESENT:
 				candidate_pairs.append(pair)
-
 		return candidate_pairs
 
 
