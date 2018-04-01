@@ -51,7 +51,8 @@ class TFIDF_optim:
     def get_important_words(self):
         median_score = np.median( [ self.ref[word]['score'] for word in self.ref ] )
 
-        important_words = { k: v for k, v in self.ref.items() if v['score'] >= median_score }
+        important_words = [ [ k, self.ref[k]['count']] for k in self.ref if self.ref[k]['score'] >= median_score ]
+
         return important_words
 
 

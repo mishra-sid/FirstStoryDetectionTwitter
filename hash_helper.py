@@ -1,4 +1,4 @@
-from fraction import gcd
+from fractions import gcd
 from random import randint
 from constants import *
 
