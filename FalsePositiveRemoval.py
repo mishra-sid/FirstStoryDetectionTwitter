@@ -1,10 +1,13 @@
 from constants import *
 
 class FalsePositiveRemoval:
-	def __init__(self, candidates, stories):
+	def __init__(self, candidates, stories, titles):
 		self.candidates = candidates
 		self.stories = stories
+		self.titles = titles
+
 		self.final = []
+
 	def RemoveFalsePositives(self):
 		intersect = 0
 		union = 0
@@ -13,5 +16,7 @@ class FalsePositiveRemoval:
 			first, second = map(lambda x : set(self.stories[x]['story']), (a,b))
 			if ( len(first & second) / len(first | second) ) > THRESHOLD_JACC_SIMILARITY:
 				self.final.append((a,b))
+			else:
+				print(self.titles[a], 'and', self.titles[b],'are false positives!')
 		return self.final
 

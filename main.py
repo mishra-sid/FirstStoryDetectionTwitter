@@ -4,8 +4,9 @@ from MinHash import MinHash
 from LSH import LSH
 from FalsePositiveRemoval import FalsePositiveRemoval
 #Main script
-stories = StoryGenerator("./Dataset").getAllStories()
-print(len(stories))
+stories, titles = StoryGenerator("./Dataset").getAllStories()
+print('Stories found:', len(stories))
+print('Titles found:', len(titles))
 tfidf = TFIDF_optim(stories)
 tfidf.tfidf()
 print('tfidf completed')
@@ -25,7 +26,7 @@ candidates = lsh.hash_get_candidates()
 candidatesNum = len(candidates)
 print('candidate pairs generated')
 print('number of candidates:', candidatesNum)
-FPRemover = FalsePositiveRemoval(candidates, tfidf.stories)
+FPRemover = FalsePositiveRemoval(candidates, tfidf.stories, titles)
 true_pairs = FPRemover.RemoveFalsePositives()
 print('false positives identified')
 
