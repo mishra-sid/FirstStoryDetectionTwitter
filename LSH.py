@@ -33,11 +33,11 @@ class LSH:
 		candidate_pairs = []
 		count = 0
 		count_of_pairs = {}
-		for bucket in self.buckets:
-			print (len(bucket.keys()))
+		# for bucket in self.buckets:
+			#print (len(bucket.keys()))
 		for bucket in self.buckets:
 			count = count +1
-			print (count)
+			#print (count)
 			for key1, key2 in combinations ( bucket.keys(), 2):
 			#	presence_count = 0
 			#	for other_bucket in self.buckets:
@@ -49,8 +49,9 @@ class LSH:
 				else :
 					count_of_pairs[(key1,key2)] = 1
 		for pair in count_of_pairs.keys():
-			print (pair)
+			#print (pair)
 			if count_of_pairs[pair] >= THRESHOLD_NUM_BUCKETS_PAIR_PRESENT:
+				#print(pair, count_of_pairs[pair])
 				candidate_pairs.append(pair)
 		return candidate_pairs
 
