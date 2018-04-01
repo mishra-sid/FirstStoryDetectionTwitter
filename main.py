@@ -1,7 +1,7 @@
 from StoryGeneration import StoryGenerator
 from TFIDF_optim import TFIDF_optim 
 from MinHash import MinHash
-
+from LSH import LSH
 #Main script
 stories = StoryGenerator("./Dataset").getAllStories()
 print(len(stories))
@@ -12,4 +12,4 @@ minHasher = MinHash(tfidf.stories, important_words)
 signature_matrix = minHasher.get_signature_matrix()
 
 lsh = LSH( signature_matrix, stories, important_words)
-print (lsh.hash_to_buckets())
+print (lsh.hash_get_candidates())

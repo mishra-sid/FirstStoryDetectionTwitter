@@ -4,7 +4,7 @@ import re
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 import numpy as np
-from constant import *
+from constants import *
 
 class TFIDF_optim:
 
