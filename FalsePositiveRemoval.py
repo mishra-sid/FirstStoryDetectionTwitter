@@ -17,6 +17,6 @@ class FalsePositiveRemoval:
 			if ( len(first & second) / len(first | second) ) > THRESHOLD_JACC_SIMILARITY:
 				self.final.append((a,b))
 			else:
-				print(self.titles[a], 'and', self.titles[b],'are false positives!')
+				print(self.titles[a]['title'], 'and', self.titles[b]['title'],'are false positives!')
 		return self.final
 

@@ -21,38 +21,40 @@ class StoryGenerator:
                         curTitle = ""
                         for line in data:
 
-                            # #Story Title Extraction
-                            # titleTagPos = line.find("<TITLE>")
-                            # if (titleTagPos != -1) or inTitle:
+                            #Story Title Extraction
+                            titleTagPos = line.find("<TITLE>")
+                            if (titleTagPos != -1) or inTitle:
 
-                            #     #Some Stories dont have body, ignoring those
-                            #     if (line.find("Blah blah blah.") != -1):
-                            #         inTitle = False
-                            #         inBody = False
-                            #         curStory = ""
-                            #         curTitle = ""
-                            #         continue
+                                #Some Stories dont have body, ignoring those
+                                if (line.find("Blah blah blah.") != -1):
+                                    inTitle = False
+                                    inBody = False
+                                    curStory = ""
+                                    curTitle = ""
+                                    continue
 
-                            #     titleEndTagPos = line.find("</TITLE>")
+                                titleEndTagPos = line.find("</TITLE>")
 
-                            #     # Check for some potential unexpected data formatting while extracting title
-                            #     if (curTitle != "") and (titleTagPos != -1):
-                            #         print("\nDouble Title before body Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
-                            #         dummyStoryCount += 1
-                            #     elif inBody:
-                            #         print("\nBody before Title Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
-                            #         exit(1)
-                            #     else:
-                            #     # If no error then continue to extract title
-                            #         startTitleSegment = titleTagPos+len("<TITLE>") if (titleTagPos != -1) else 0
-                            #         if titleEndTagPos == -1:
-                            #             curTitle += line[startTitleSegment : ]
-                            #             inTitle = False
-                            #         else:
-                            #             if inTitle:
-                            #                 curTitle += " "
-                            #             curTitle += line[startTitleSegment : titleEndTagPos]
-                            #             inTitle = True
+                                # Check for some potential unexpected data formatting while extracting title
+                                if (curTitle != "") and (titleTagPos != -1):
+                                    print("\nDouble Title before body Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
+                                    inTitle = False
+                                    curTitle = ""
+                                    dummyStoryCount += 1
+                                elif inBody:
+                                    print("\nBody before Title Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
+                                    exit(1)
+                                else:
+                                # If no error then continue to extract title
+                                    startTitleSegment = titleTagPos+len("<TITLE>") if (titleTagPos != -1) else 0
+                                    if inTitle:
+                                        curTitle += " "
+                                    if titleEndTagPos == -1:
+                                        curTitle += line[startTitleSegment : ]
+                                        inTitle = True
+                                    else:
+                                        curTitle += line[startTitleSegment : titleEndTagPos]
+                                        inTitle = False
 
                             # Story Body Extraction
                             if inBody:
@@ -80,7 +82,7 @@ class StoryGenerator:
         for ind, story in enumerate(self.yieldStory()):
             body, title = story 
             stories.append({ 'timestamp' : ind, 'story': body })
-            #titles.append({ 'timestamp' : ind, 'title': title })
+            titles.append({ 'timestamp' : ind, 'title': title })
         return (stories, titles)
 
 #Usecase
