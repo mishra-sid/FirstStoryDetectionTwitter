@@ -18,7 +18,7 @@ def get_sieve(N):
     return primes
 
 def generate_permutation_hash_functions( length, count ):
-    primes = get_sieve(100000))
+    primes = get_sieve(100000)
     next = 0
 
     hash_functions = []
