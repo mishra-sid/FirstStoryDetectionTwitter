@@ -4,7 +4,7 @@ import re
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 import numpy as np
-
+from constant import *
 
 class TFIDF_optim:
 
@@ -51,7 +51,7 @@ class TFIDF_optim:
     def get_important_words(self):
         median_score = np.median( [ self.ref[word]['score'] for word in self.ref ] )
 
-        important_words = [ [ k, self.ref[k]['count']] for k in self.ref if self.ref[k]['score'] >= median_score ]
+        important_words = [ [ k, self.ref[k]['count']] for k in self.ref if self.ref[k]['score'] >= median_score * FRACTION_IMPORTANT_WORDS_THRESHOLD ]
 
         return important_words
 

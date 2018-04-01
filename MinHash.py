@@ -12,6 +12,7 @@ class MinHash:
 
         self.important_words = important_words 
         self.len_words = len(important_words)
+        print("length of words", self.len_words)
         self.hash_functions = generate_permutation_hash_functions(self.len_words, NUM_MINHASH_FUNCTIONS)
 
     def get_signature_matrix(self):
