@@ -27,8 +27,8 @@ class StoryGenerator:
 
     def getAllStories(self):
         stories = []
-        for story in self.yieldStory():
-            stories.append(story)
+        for ind, story in enumerate(self.yieldStory()):
+            stories.append({ 'timestamp' : ind, 'story': story })
         return stories
 
 #Usecase

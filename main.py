@@ -1,9 +1,9 @@
 from StoryGeneration import StoryGenerator
-from TFIDF import TFIDF 
+from TFIDF_optim import TFIDF_optim 
 
 #Main script
 stories = StoryGenerator("./Dataset").getAllStories()
-tfidf = TFIDF(stories, 'english')
-sparse_matrix = tfidf.get_sparse_matrix()
-
-print(sparse_matrix)
+print(len(stories))
+tfidf = TFIDF_optim(stories)
+tfidf.tfidf()
+print(tfidf.get_important_words())

@@ -91,9 +91,10 @@ class TFIDF:
         
         # compute root words of the text , like extracted becomes ectract , works like died, dies, die, they become die
 
-        self._df['TEXT_OF_RADICALS'] = self._df['WITHOUT_STOPWORDS'].apply(
-            lambda x: self._get_text_radicals(x)
-        )
+        #self._df['TEXT_OF_RADICALS'] = self._df['WITHOUT_STOPWORDS'].apply(
+        #    lambda x: self._get_text_radicals(x)
+        #)
+        self._df['TEXT_OF_RADICALS'] = self._df['WITHOUT_STOPWORDS']
 
         # create a column for the radicals
         self.columns_radicals = list(self._df['TEXT_OF_RADICALS'])
@@ -127,6 +128,7 @@ class TFIDF:
         self._extract_tokens()
         words_set = []
         
+        print("stage 1")
         # put all the detected important radicals in a list
         for l in list(self._df['IMPORTANT_RADICALS']):
             words_set += l
@@ -136,18 +138,18 @@ class TFIDF:
         
         # create dictionary out of the important radicals for each document, stored in self.token_texts
         self.tokens_texts = {i: [] for i in range(len(self.texts))}
-        
+        print("stage 2")
         for i in range(len(self.texts)):
             self._df.apply(lambda row: self._conc_my_tokens(
                 row[i], i), axis=self._row_axis)
-        
+        print("stage 3")
         # Finally create a sparse matrix, for each document
         matrix = [[None] * len(words_set) for i in range(len(self.texts))]
         for text in range(len(self.texts)):
             for i, token in enumerate(words_set):
                 has = 1 if token in self.tokens_texts[text] else 0
                 matrix[text][i] = has
-
+        print("stage 4")
         return matrix
 
 
