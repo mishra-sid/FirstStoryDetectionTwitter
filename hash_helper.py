@@ -25,7 +25,7 @@ def generate_permutation_hash_functions( length, count ):
     for x in range(count):
         while gcd(length, primes[next]) != 1:
             next += 1
-        hash_functions.append( { 'a' : primes[next] , 'b' : randint(0, length) }
+        hash_functions.append( { 'a' : primes[next] , 'b' : randint(0, length) })
         next += 1
 
     return hash_functions
