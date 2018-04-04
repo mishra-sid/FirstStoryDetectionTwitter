@@ -28,26 +28,30 @@ class LSH:
 				else:
 					self.buckets[int(self.hash_func(xor_vals[band_no]))][doc] = 1	
 
-	def hash_get_candidates(self):
-		self.hash_to_buckets()
+	def hash_get_candidates(self):	
+		i = 1
 		candidate_pairs = []
-		count = 0
 		count_of_pairs = {}
-		# for bucket in self.buckets:
-			#print (len(bucket.keys()))
-		for bucket in self.buckets:
-			count = count +1
-			#print (count)
-			for key1, key2 in combinations ( bucket.keys(), 2):
-			#	presence_count = 0
-			#	for other_bucket in self.buckets:
-			#		if key1 in other_bucket and key2 in other_bucket:
-			#			presence_count += 1 
-			
-				if (key1,key2) in count_of_pairs:
-					count_of_pairs[(key1,key2)] += 1
-				else :
-					count_of_pairs[(key1,key2)] = 1
+		while (i<=NUM_BUCKET_SETS): 
+			self.hash_func = xor_range_hasher(self.len_imp_words)
+			self.hash_to_buckets()
+			count = 0	
+			# for bucket in self.buckets:
+				#print (len(bucket.keys()))
+			for bucket in self.buckets:
+				count = count +1
+				#print (count)
+				for key1, key2 in combinations ( bucket.keys(), 2):
+				#	presence_count = 0
+				#	for other_bucket in self.buckets:
+				#		if key1 in other_bucket and key2 in other_bucket:
+				#			presence_count += 1 
+				
+					if (key1,key2) in count_of_pairs:
+						count_of_pairs[(key1,key2)] += 1
+					else :
+						count_of_pairs[(key1,key2)] = 1
+			i += 1
 		for pair in count_of_pairs.keys():
 			#print (pair)
 			if count_of_pairs[pair] >= THRESHOLD_NUM_BUCKETS_PAIR_PRESENT:
