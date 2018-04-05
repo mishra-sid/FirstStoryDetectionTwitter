@@ -1,9 +1,9 @@
 class DeclareStories:
 	def __init__(self, truePairs, storyCount):
 		self.truePairs = truePairs
-		self.unionSet = [-1 for _ in range(storyCount)]
+		self.unionSet = [i for i in range(storyCount)]
 	def getParent(self, index):
-		if self.unionSet[index] == -1:
+		if self.unionSet[index] == index:
 			return index
 		else:
 			return self.unionSet[self.unionSet[index]]
