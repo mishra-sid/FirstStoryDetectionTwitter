@@ -2,7 +2,7 @@ import os, re
 
 class StoryGenerator:
     def __init__(self, sourcePath):
-        self.sourcePath = sourcePath
+        self.sourcePath = sourcePath    
 
     def sanitize(self, dirtyString):
         return dirtyString.replace("\n", " ").replace(" Reuter &#3;", "").replace("&lt;", "<")
@@ -12,7 +12,7 @@ class StoryGenerator:
         storyCount = 0
         dummyStoryCount = 0
         for root, _, files in os.walk(self.sourcePath):
-            for file in files:
+            for file in sorted(files):
                 if (file.endswith(".sgm")):
                     with open(os.path.join(root, file), encoding="utf8", errors='ignore') as data:
                         inBody = False
@@ -37,7 +37,7 @@ class StoryGenerator:
 
                                 # Check for some potential unexpected data formatting while extracting title
                                 if (curTitle != "") and (titleTagPos != -1):
-                                    print("\nDouble Title before body Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
+                                    #print("\nDouble Title before body Error!\nLine is", line, "Title so far is:", curTitle, 'Body so far is :', curStory)
                                     inTitle = False
                                     curTitle = ""
                                     dummyStoryCount += 1
