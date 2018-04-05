@@ -12,6 +12,7 @@ class StoryGenerator:
         storyCount = 0
         dummyStoryCount = 0
         for root, _, files in os.walk(self.sourcePath):
+            print(sorted(files))
             for file in sorted(files):
                 if (file.endswith(".sgm")):
                     with open(os.path.join(root, file), encoding="utf8", errors='ignore') as data:
