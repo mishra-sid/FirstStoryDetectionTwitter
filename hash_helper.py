@@ -34,8 +34,8 @@ def xor_range_hasher(length):
     curr = 1
     while curr < length:
         curr <<= 1
-
+    a = randint(0, NUM_BUCKETS)
     #partition 0 .. curr into segments
-    func = lambda x : ( x * NUM_BUCKETS ) / curr
+    func = lambda x : (( x * NUM_BUCKETS ) / curr + a)% NUM_BUCKETS
     
     return func
