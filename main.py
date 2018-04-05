@@ -37,9 +37,9 @@ connectedComponents = StorySplitter.findConnectedComponents()
 print('Connected Components have been seperated')
 print('Found', len(connectedComponents), ' connected components of graph')
 
-for key, value in connectedComponents:
+for key, value in connectedComponents.items():
 	print("Connected Stories:-")
-	for i, story in value:
+	for i, story in enumerate(value):
 		if (i >= 5):
 			break
 		print('\t', titles[story]['title'])
