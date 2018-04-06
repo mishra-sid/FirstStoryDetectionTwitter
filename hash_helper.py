@@ -34,8 +34,22 @@ def xor_range_hasher(length):
     curr = 1
     while curr < length:
         curr <<= 1
-    a = randint(0, NUM_BUCKETS)
     #partition 0 .. curr into segments
-    func = lambda x : (( x * NUM_BUCKETS ) / curr + a)% NUM_BUCKETS
+    func = lambda x : ( x * NUM_BUCKETS ) / curr
     
     return func
+
+def weighted_sum_hasher(length, rowmax, count):
+    hash_functions = []
+    for xx in range(count):
+        weights = []
+        for y in range(length):
+            weights.append(randint(int((rowmax * xx) / count), int((rowmax * (xx + 1)) / count)))
+        weights = list(map(lambda x : x / float(sum(weights)), weights))
+
+        func = lambda x : ( NUM_BUCKETS * sum([x[i] * weights[i] for i in range(length)]) ) / rowmax
+        hash_functions.append(func)
+    return hash_functions
+
+        
+            

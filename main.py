@@ -7,6 +7,7 @@ from DeclareStories import DeclareStories
 
 #Main script
 stories, titles = StoryGenerator("./Dataset").getAllStories()
+
 tfidf = TFIDF_optim(stories)
 tfidf.tfidf()
 print('tfidf completed')
@@ -38,8 +39,8 @@ print('Connected Components have been seperated')
 print('Found', len(connectedComponents), ' connected components of graph')
 
 for value in sorted(connectedComponents.values(), key = lambda l: len(l), reverse = True):
-	print("Connected Stories:-")
+	#print("Connected Stories:-")
 	for i, story in enumerate(value):
 		if (i >= 5):
 			break
-		print('\t', titles[story]['title'])
+		#print('\t', titles[story]['title'])
