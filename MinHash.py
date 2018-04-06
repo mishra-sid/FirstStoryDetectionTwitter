@@ -36,7 +36,7 @@ class MinHash:
                 for element in document_set:
                     if curr in self.stories[element]['story']:
                         to_remove.append(element)
-                        self.signature_matrix[iter_hash][element] = x
+                        self.signature_matrix[iter_hash][element] = iter_count
 
                 for element in to_remove:
                     document_set.remove(element)
