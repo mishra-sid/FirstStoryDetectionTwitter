@@ -11,7 +11,6 @@ class TFIDF_optim:
     def __init__(self, stories):
         self.stories = stories
         self.ref = {}
-        
         self.len_docs = len(self.stories)
         self._tokenizer = RegexpTokenizer(r'\w+')
     

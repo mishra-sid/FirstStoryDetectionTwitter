@@ -20,4 +20,3 @@ class FalsePositiveRemoval:
 				pass
 				#print(self.titles[a]['title'], 'and', self.titles[b]['title'],'are false positives!')
 		return self.final
-

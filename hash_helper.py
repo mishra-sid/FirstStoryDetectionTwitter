@@ -1,5 +1,5 @@
 from fractions import gcd
-from random import randint
+import random
 from constants import *
 
 def get_sieve(N):
@@ -19,23 +19,35 @@ def get_sieve(N):
 
 def generate_permutation_hash_functions( length, count ):
     primes = get_sieve(100000)
-    next = 0
-
+    next = 100
     hash_functions = []
+    random.seed(5)
     for x in range(count):
         while gcd(length, primes[next]) != 1:
             next += 1
-        hash_functions.append( { 'a' : primes[next] , 'b' : randint(0, length) })
+        b = random.randint(0, length)
+        hash_functions.append( { 'a' : primes[next] , 'b' : b })
         next += 1
 
     return hash_functions
 
-def xor_range_hasher(length):
-    curr = 1
-    while curr < length:
-        curr <<= 1
-    a = randint(0, NUM_BUCKETS)
-    #partition 0 .. curr into segments
-    func = lambda x : (( x * NUM_BUCKETS ) / curr + a)% NUM_BUCKETS
-    
-    return func
+
+def weighted_sum_hasher(length, rowmax, count):
+    hash_functions = []
+    primes = get_sieve(100000)
+    next = 1
+    weights = []
+    random.seed(13)
+    for y in range(length):
+        # weights.append(randint(int((rowmax * xx) / count), int((rowmax * (xx + 1)) / count)))
+        weights.append(random.random())
+
+    for xx in range(count):
+        # weights = list(map(lambda x : x / float(sum(weights)), weights))
+        func = lambda x : (primes[next]*(sum([x[i] * weights[i] for i in range(length)])) + 5) % NUM_BUCKETS
+        next += 1
+        hash_functions.append(func)
+    return hash_functions
+
+        
+            
