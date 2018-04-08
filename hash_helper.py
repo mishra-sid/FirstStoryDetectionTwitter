@@ -32,6 +32,7 @@ def generate_permutation_hash_functions( length, count ):
 
     return hash_functions
 
+
 # def xor_range_hasher(length):
 #     curr = 1
 #     while curr < length:

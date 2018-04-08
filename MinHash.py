@@ -26,6 +26,7 @@ class MinHash:
 
             document_set = set(range(self.len_docs)) 
             x = 1
+
             while iter_count < self.len_words:
                 if len(document_set) == 0:
                     break
@@ -42,6 +43,7 @@ class MinHash:
 
                 x = (a * x + b) % self.len_words
                 iter_count += 1
+
 
             print("iter hash", iter_hash)
             iter_hash += 1
