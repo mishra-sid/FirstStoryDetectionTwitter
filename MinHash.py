@@ -23,14 +23,11 @@ class MinHash:
         for func in self.hash_functions[ starting : ending]: 
             a , b = func['a'] , func['b']
             iter_count = 0
-
             document_set = set(range(self.len_docs)) 
             x = 1
-
             while iter_count < self.len_words:
                 if len(document_set) == 0:
                     break
-                #print("iter_hash", iter_hash, "iter_count", iter_count)
                 curr = self.important_words[x][0]
                 to_remove = []
                 for element in document_set:
