@@ -5,18 +5,15 @@ from LSH import LSH
 from FalsePositiveRemoval import FalsePositiveRemoval
 from DeclareStories import DeclareStories
 
-#Main script
+
 stories, titles = StoryGenerator("./Dataset").getAllStories()
 tfidf = TFIDF_optim(stories)
 tfidf.tfidf()
-print('tfidf completed')
-# print('stories')
-# for item in list(map(lambda x: set(x['story']), tfidf.stories)):
-# 	print(item)
-
 important_words = tfidf.get_important_words()
+print('tfidf completed')
 minHasher = MinHash(tfidf.stories, important_words)
 signature_matrix = minHasher.get_signature_matrix()
+
 print('signature matrix generated')
 
 # print('imp words\n', important_words)
@@ -38,8 +35,8 @@ print('Connected Components have been seperated')
 print('Found', len(connectedComponents), ' connected components of graph')
 
 for value in sorted(connectedComponents.values(), key = lambda l: len(l), reverse = True):
-	print("Connected Stories:-")
+	#print("Connected Stories:-")
 	for i, story in enumerate(value):
 		if (i >= 5):
 			break
-		print('\t', titles[story]['title'])
+		#print('\t', titles[story]['title'])

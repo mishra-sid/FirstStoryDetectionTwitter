@@ -26,4 +26,3 @@ class FalsePositiveRemoval:
 				#print(self.titles[a]['title'], 'and', self.titles[b]['title'],'are false positives!')
 		print("Average Jaccard Similarity for true positives is:", (averageJacSim/truePositiveCount))
 		return self.final
-
