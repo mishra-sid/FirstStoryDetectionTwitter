@@ -7,6 +7,7 @@ from DeclareStories import DeclareStories
 import numpy
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plot
+from sklearn.cluster import KMeans
 
 stories, titles = StoryGenerator("./Dataset").getAllStories()
 tfidf = TFIDF_optim(stories)
@@ -22,6 +23,18 @@ reducedVector = pca.fit_transform(sigmat)
 
 plot.scatter(reducedVector[:,0], reducedVector[:,1])
 plot.show()
+kmeans = KMeans(n_clusters=2000, random_state = 0).fit(reducedVector)
+
+story_threads = [[] for _ in range(2001)]
+for i, item in enumerate(kmeans.labels_.tolist()):
+	story_threads[item].append(i)
+
+for value in story_threads:
+	print("Connected Stories:-")
+	for i, story in enumerate(value):
+		if (i >= 5):
+			break
+		print('\t', titles[story]['title'])
 
 # print('imp words\n', important_words)
 # print('sig mat\n', signature_matrix)
