@@ -1,0 +1,88 @@
+['all-exchanges-strings.lc.txt', 'all-orgs-strings.lc.txt', 'all-people-strings.lc.txt', 'all-places-strings.lc.txt', 'all-topics-strings.lc.txt', 'cat-descriptions_120396.txt', 'feldman-cia-worldfactbook-data.txt', 'lewis.dtd', 'reut2-000.sgm', 'reut2-001.sgm', 'reut2-002.sgm', 'reut2-003.sgm', 'reut2-004.sgm', 'reut2-005.sgm', 'reut2-006.sgm', 'reut2-007.sgm', 'reut2-008.sgm', 'reut2-009.sgm', 'reut2-010.sgm', 'reut2-011.sgm', 'reut2-012.sgm', 'reut2-013.sgm', 'reut2-014.sgm', 'reut2-015.sgm', 'reut2-016.sgm', 'reut2-017.sgm', 'reut2-018.sgm', 'reut2-019.sgm', 'reut2-020.sgm', 'reut2-021.sgm']
+True Stories: 19043 Dummy Stories: 173
+31114 19043
+tfidf completed
+length of words 15607
+iter hash 46
+iter hash 18
+iter hash 65
+iter hash 56
+iter hash 0
+iter hash 37
+iter hash 28
+iter hash 9
+iter hash 47
+iter hash 57
+iter hash 38
+iter hash 19
+iter hash 29
+iter hash 20
+iter hash 58
+iter hash 66
+iter hash 10
+iter hash 48
+iter hash 21
+iter hash 39
+iter hash 30
+iter hash 11
+iter hash 59
+iter hash 67
+iter hash 49
+iter hash 22
+iter hash 40
+iter hash 60
+iter hash 50
+iter hash 68
+iter hash 31
+iter hash 12
+iter hash 41
+iter hash 61
+iter hash 69
+iter hash 42
+iter hash 51
+iter hash 32
+iter hash 70
+iter hash 62
+iter hash 52
+iter hash 71
+iter hash 43
+iter hash 33
+iter hash 63
+iter hash 53
+iter hash 44
+iter hash 72
+iter hash 34
+iter hash 23
+iter hash 73
+iter hash 64
+iter hash 13
+iter hash 35
+iter hash 74
+iter hash 1
+iter hash 14
+iter hash 36
+iter hash 45
+iter hash 15
+iter hash 2
+iter hash 3
+iter hash 16
+iter hash 4
+iter hash 5
+iter hash 24
+iter hash 6
+iter hash 25
+iter hash 7
+iter hash 8
+iter hash 17
+iter hash 26
+iter hash 27
+iter hash 54
+iter hash 55
+signature matrix generated
+[[-2232.12256309  -798.87219354]
+ [   46.47804198  1011.98624568]
+ [ 1142.89569764   255.42709058]
+ ...
+ [ -448.16915665   324.72859959]
+ [-1572.07827653  -192.24572396]
+ [ -550.87295863   184.91918102]]
