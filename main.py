@@ -5,6 +5,8 @@ from LSH import LSH
 from FalsePositiveRemoval import FalsePositiveRemoval
 from DeclareStories import DeclareStories
 
+PICKLE_FILE = './signature_matrix_cache.dat'
+
 #Main script
 stories, titles = StoryGenerator("./Dataset").getAllStories()
 tfidf = TFIDF_optim(stories)
@@ -15,10 +17,18 @@ print('tfidf completed')
 # 	print(item)
 
 important_words = tfidf.get_important_words()
-minHasher = MinHash(tfidf.stories, important_words)
-signature_matrix = minHasher.get_signature_matrix()
-print('signature matrix generated')
 
+signature_matrix = None 
+if not os.path.exists(PICKLE_FILE):
+    minHasher = MinHash(tfidf.stories, important_words)
+    signature_matrix = minHasher.get_signature_matrix()
+    print('signature matrix generated')
+    with open(PICKLE_FILE, 'wb') as wfile:
+        pickle.dump(signature_matrix, wfile, pickle.HIGHEST_PRIORITY) 
+else:
+    with open(PICKLE_FILE, 'rb') as rfile:
+        signature_matrix = pickle.load(rfile)
+    
 # print('imp words\n', important_words)
 # print('sig mat\n', signature_matrix)
 lsh = LSH( signature_matrix, stories, important_words)
