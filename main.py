@@ -4,7 +4,8 @@ from MinHash import MinHash
 from LSH import LSH
 from FalsePositiveRemoval import FalsePositiveRemoval
 from DeclareStories import DeclareStories
-
+import os
+import pickle
 PICKLE_FILE = './signature_matrix_cache.dat'
 
 #Main script
