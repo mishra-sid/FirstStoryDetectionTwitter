@@ -19,7 +19,7 @@ signature_matrix = None
 if not os.path.exists(PICKLE_FILE):
     minHasher = MinHash(tfidf.stories, important_words)
     signature_matrix = minHasher.get_signature_matrix()
-    print('signature matrix generated')
+    print('signature matrix generated and cached')
     with open(PICKLE_FILE, 'wb') as wfile:
         pickle.dump(signature_matrix, wfile, pickle.HIGHEST_PROTOCOL) 
 else:
