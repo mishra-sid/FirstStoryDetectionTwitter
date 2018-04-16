@@ -29,6 +29,7 @@ if not os.path.exists(PICKLE_FILE):
 else:
     with open(PICKLE_FILE, 'rb') as rfile:
         signature_matrix = pickle.load(rfile)
+        print('Signature matrix loaded from cache')
     
 # print('imp words\n', important_words)
 # print('sig mat\n', signature_matrix)
