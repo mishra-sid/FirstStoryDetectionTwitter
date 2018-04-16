@@ -14,10 +14,6 @@ tfidf = TFIDF_optim(stories)
 tfidf.tfidf()
 important_words = tfidf.get_important_words()
 print('tfidf completed')
-minHasher = MinHash(tfidf.stories, important_words)
-signature_matrix = minHasher.get_signature_matrix()
-
-print('signature matrix generated')
 
 signature_matrix = None 
 if not os.path.exists(PICKLE_FILE):
