@@ -36,40 +36,27 @@ reducedVector = pca.fit_transform(sigmat)
 
 plot.scatter(reducedVector[:,0], reducedVector[:,1])
 plot.show()
-kmeans = KMeans(n_clusters=2000, random_state = 0).fit(reducedVector)
 
-story_threads = [[] for _ in range(2001)]
+print("Starting Clustering with kmeans")
+numClusters = 100
+kmeans = KMeans(n_clusters=numClusters, random_state = 0).fit(reducedVector)
+
+story_threads = [[] for _ in range(numClusters)]
+storycount = 0
 for i, item in enumerate(kmeans.labels_.tolist()):
+	storycount += 1
 	story_threads[item].append(i)
 
+nonzeroclusters = 0
 for value in story_threads:
-	print("Connected Stories:-")
+	print("Connected Stories (First 5 titles):-")
+	if len(value) != 0:
+		nonzeroclusters += 1
+	print(len(value))
 	for i, story in enumerate(value):
 		if (i >= 5):
 			break
-		print('\t', titles[story]['title'])
+		#print('\t', titles[story]['title'])
 
-# print('imp words\n', important_words)
-# print('sig mat\n', signature_matrix)
-# lsh = LSH( signature_matrix, stories, important_words)
-# candidates = lsh.hash_get_candidates()
-# candidatesNum = len(candidates)
-# print('candidate pairs generated')
-# print('number of candidates:', candidatesNum)
+print('Average non-zero cluster size is ', (storycount/nonzeroclusters), 'and', 100-nonzeroclusters, 'out of 100 clusters are empty')
 
-# FPRemover = FalsePositiveRemoval(candidates, tfidf.stories, titles)
-# true_pairs = FPRemover.RemoveFalsePositives()
-# print('false positives identified')
-# print ((1-(len(true_pairs)/candidatesNum)) * 100, 'percent of candidate pairs were false positives')
-
-# StorySplitter = DeclareStories(true_pairs, len(stories))
-# connectedComponents = StorySplitter.findConnectedComponents()
-# print('Connected Components have been seperated')
-# print('Found', len(connectedComponents), ' connected components of graph')
-
-# for value in sorted(connectedComponents.values(), key = lambda l: len(l), reverse = True):
-# 	#print("Connected Stories:-")
-# 	for i, story in enumerate(value):
-# 		if (i >= 5):
-# 			break
-# 		#print('\t', titles[story]['title'])
