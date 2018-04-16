@@ -9,6 +9,8 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plot
 from sklearn.cluster import KMeans
 import os
+import pickle
+PICKLE_FILE = './signature_matrix_cache.dat'
 
 stories, titles = StoryGenerator("./Dataset").getAllStories()
 tfidf = TFIDF_optim(stories)
