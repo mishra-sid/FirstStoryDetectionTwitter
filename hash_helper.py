@@ -22,6 +22,9 @@ def generate_permutation_hash_functions( length, count ):
     next = 100
     hash_functions = []
     random.seed(5)
+
+    # b = 523
+
     for x in range(count):
         while gcd(length, primes[next]) != 1:
             next += 1
@@ -31,6 +34,16 @@ def generate_permutation_hash_functions( length, count ):
 
     return hash_functions
 
+
+
+# def xor_range_hasher(length):
+#     curr = 1
+#     while curr < length:
+#         curr <<= 1
+#     #partition 0 .. curr into segments
+#     func = lambda x : ( x * NUM_BUCKETS ) / curr
+    
+#     return func
 
 def weighted_sum_hasher(length, rowmax, count):
     hash_functions = []

@@ -25,6 +25,7 @@ class MinHash:
             iter_count = 0
             document_set = set(range(self.len_docs)) 
             x = 1
+
             while iter_count < self.len_words:
                 if len(document_set) == 0:
                     break
