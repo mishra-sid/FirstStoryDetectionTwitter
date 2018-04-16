@@ -7,6 +7,7 @@ from DeclareStories import DeclareStories
 import numpy
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plot
+import matplotlib.cm
 from sklearn.cluster import KMeans
 import os
 import pickle
@@ -34,16 +35,20 @@ sigmat = numpy.array(signature_matrix).T
 pca = PCA(n_components = 2, copy = False)
 reducedVector = pca.fit_transform(sigmat)
 
-plot.scatter(reducedVector[:,0], reducedVector[:,1])
-plot.show()
-
 print("Starting Clustering with kmeans")
-numClusters = 100
+numClusters = 2000
+
 kmeans = KMeans(n_clusters=numClusters, random_state = 0).fit(reducedVector)
+labels = kmeans.labels_.tolist()
 
 story_threads = [[] for _ in range(numClusters)]
 storycount = 0
-for i, item in enumerate(kmeans.labels_.tolist()):
+
+colors = matplotlib.cm.rainbow(numpy.linspace(0,1, numClusters))
+plot.scatter(reducedVector[:,0], reducedVector[:,1], s = 1, color = numpy.array([colors[l] for l in labels]))
+plot.show()
+
+for i, item in enumerate(labels):
 	storycount += 1
 	story_threads[item].append(i)
 
