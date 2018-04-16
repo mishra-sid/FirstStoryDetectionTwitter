@@ -8,15 +8,26 @@ import numpy
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plot
 from sklearn.cluster import KMeans
+import os
 
 stories, titles = StoryGenerator("./Dataset").getAllStories()
 tfidf = TFIDF_optim(stories)
 tfidf.tfidf()
 important_words = tfidf.get_important_words()
 print('tfidf completed')
-minHasher = MinHash(tfidf.stories, important_words)
-signature_matrix = minHasher.get_signature_matrix()
-print('signature matrix generated')
+
+signature_matrix = None 
+if not os.path.exists(PICKLE_FILE):
+    minHasher = MinHash(tfidf.stories, important_words)
+    signature_matrix = minHasher.get_signature_matrix()
+    print('signature matrix generated and cached')
+    with open(PICKLE_FILE, 'wb') as wfile:
+        pickle.dump(signature_matrix, wfile, pickle.HIGHEST_PROTOCOL) 
+else:
+    with open(PICKLE_FILE, 'rb') as rfile:
+        signature_matrix = pickle.load(rfile)
+        print('Signature matrix loaded from cache')
+
 sigmat = numpy.array(signature_matrix).T
 pca = PCA(n_components = 2, copy = False)
 reducedVector = pca.fit_transform(sigmat)
