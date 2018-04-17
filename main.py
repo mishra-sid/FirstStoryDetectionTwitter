@@ -4,8 +4,12 @@ from MinHash import MinHash
 from LSH import LSH
 from FalsePositiveRemoval import FalsePositiveRemoval
 from DeclareStories import DeclareStories
+from community_detection import community_detection
+
 import os
 import pickle
+
+
 PICKLE_FILE = './signature_matrix_cache.dat'
 
 
@@ -36,15 +40,18 @@ print('candidate pairs generated')
 print('number of candidates:', candidatesNum)
 
 FPRemover = FalsePositiveRemoval(candidates, tfidf.stories, titles)
-true_pairs = FPRemover.RemoveFalsePositives()
+true_pairs, true_weights = FPRemover.RemoveFalsePositives()
 print('false positives identified')
 print ((1-(len(true_pairs)/candidatesNum)) * 100, 'percent of candidate pairs were false positives')
+
 
 StorySplitter = DeclareStories(true_pairs, len(stories))
 connectedComponents = StorySplitter.findConnectedComponents()
 print('Connected Components have been seperated')
 print('Found', len(connectedComponents), ' connected components of graph')
 
+comm = community_detection(true_pairs, true_weights)
+comm.detect_community()
 for value in sorted(connectedComponents.values(), key = lambda l: len(l), reverse = True):
 	#print("Connected Stories:-")
 	for i, story in enumerate(value):
