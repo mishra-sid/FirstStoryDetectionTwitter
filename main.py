@@ -54,14 +54,16 @@ for i, item in enumerate(labels):
 
 nonzeroclusters = 0
 for value in story_threads:
-	print("Connected Stories (First 5 titles):-")
+	print("Connected Stories Statistics:-")
 	if len(value) != 0:
 		nonzeroclusters += 1
-	print(len(value))
+	print("\tNumber of stories in this cluster:",len(value))
+	print("\tFirst Story for this Cluster: ", titles[min(value, key= lambda x: stories[x]['timestamp'])]['title'])
+	print("\tSample of 5 story titles:")
 	for i, story in enumerate(value):
 		if (i >= 5):
 			break
-		#print('\t', titles[story]['title'])
+		print("\t\t", titles[story]['title'])
 
-print('Average non-zero cluster size is ', (storycount/nonzeroclusters), 'and', numClusters-nonzeroclusters, 'out of 100 clusters are empty')
+print('Average non-zero cluster size is ', (storycount/nonzeroclusters), 'and', (numClusters-nonzeroclusters)/numClusters, '%% of clusters are empty')
 
