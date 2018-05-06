@@ -1,6 +1,20 @@
 # FirstStoryDetectionTwitter
 
 #Dataset : http://www.daviddlewis.com/resources/testcollections/reuters21578/
+
+----------------------- How to Run ------------------------------
+1) Make sure you have python3 and the following modules installed:
+	-> Numpy
+	-> Sklearn
+	-> Matplotlib
+	-> Pandas
+	-> nltk (with stopword downloaded!)
+2) git checkout to main branch(which has LSH and Community detection ) or git checkout to clustering branch (which has clustering method) 
+3) Open constants.py and modify it with the values you would like
+4) Run main.py
+-------------------------------------------------------------------
+
+
 #Steps:
 1. Pre-processing Reuters dataset : Write regex to parse and extract stories in memory.# Return a iterator (yield) to extracted stories)  
 2. Character shingle : Length - 7 :Function that takes a string and returns it's shingle id 
