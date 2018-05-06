@@ -36,7 +36,7 @@ pca = PCA(n_components = 2, copy = False)
 reducedVector = pca.fit_transform(sigmat)
 
 print("Starting Clustering with kmeans")
-numClusters = 2000
+numClusters = 500
 
 kmeans = KMeans(n_clusters=numClusters, random_state = 0).fit(reducedVector)
 labels = kmeans.labels_.tolist()
@@ -63,5 +63,5 @@ for value in story_threads:
 			break
 		#print('\t', titles[story]['title'])
 
-print('Average non-zero cluster size is ', (storycount/nonzeroclusters), 'and', 100-nonzeroclusters, 'out of 100 clusters are empty')
+print('Average non-zero cluster size is ', (storycount/nonzeroclusters), 'and', numClusters-nonzeroclusters, 'out of 100 clusters are empty')
 
